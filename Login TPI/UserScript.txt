@@ -1,0 +1,19 @@
+create database UsuarioDB
+
+use UsuarioDB
+
+CREATE TABLE Users (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Username NVARCHAR(100) NOT NULL UNIQUE,
+    Password NVARCHAR(256) NOT NULL,
+	Name VARCHAR(50),
+	Surname Varchar(50),
+	BirthDate Date
+);
+
+--Test Insert
+INSERT INTO Users (Username, Password, Name, Surname, BirthDate)
+VALUES ('jdoe', 'password123', 'John', 'Doe', '1990-01-01');
+
+INSERT INTO Users (Username, Password, Name, Surname, BirthDate)
+VALUES ('asmith', 'securepass456', 'Alice', 'Smith', '1985-05-15');
