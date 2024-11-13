@@ -3,8 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const FORMAS_PAGO_URL = 'https://localhost:7133/api/Factura/formas';
     const CLIENTES_URL = 'https://localhost:7133/api/Factura/clientes';
     const DETALLE_FACTURA_URL = 'https://localhost:7133/api/Factura/DetalleFactura';
+    const ARTICULO_URL = 'https://localhost:7133/getby';
     let formasPagoMap = {};
     let clientesMap = {};
+    let articulosMap = {};
 
     // Función para obtener las formas de pago
     async function fetchFormasPago() {
@@ -29,6 +31,18 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         } catch (error) {
             console.error('Error al obtener los clientes:', error);
+        }
+    }
+
+    // Función para obtener los nombres de los artículos
+    async function fetchArticulo(id) {
+        try {
+            const response = await fetch(`${ARTICULO_URL}${id}`);
+            const articulo = await response.json();
+            return articulo[0].nombre;
+        } catch (error) {
+            console.error('Error al obtener el artículo:', error);
+            return 'Desconocido';
         }
     }
 
@@ -127,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     row.nextSibling.remove();
                 } else {
                     const detalles = await fetchDetallesFactura(factura.nrofactura);
-                    mostrarDetalles(row, detalles);
+                    await mostrarDetalles(row, detalles);
                 }
             });
 
@@ -140,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Función para mostrar los detalles de una factura
-    function mostrarDetalles(row, detalles) {
+    async function mostrarDetalles(row, detalles) {
         // Crear una fila para los detalles
         const detallesRow = document.createElement('tr');
         detallesRow.classList.add('detalles-row');
@@ -155,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Crear el encabezado de la mini tabla
         const thead = document.createElement('thead');
         const headerRow = document.createElement('tr');
-        ['ID Detalle', 'ID Artículo', 'Cantidad'].forEach(text => {
+        ['ID Detalle', 'Nombre Artículo', 'Cantidad'].forEach(text => {
             const th = document.createElement('th');
             th.textContent = text;
             th.style.color = 'white'; // Establecer el color del texto a blanco
@@ -167,15 +181,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Crear el cuerpo de la mini tabla
         const tbody = document.createElement('tbody');
-        detalles.forEach(detalle => {
+        for (const detalle of detalles) {
             const detalleRow = document.createElement('tr');
-            ['iddetalle', 'idarticulo', 'cantidad'].forEach(key => {
+            const nombreArticulo = await fetchArticulo(detalle.idarticulo);
+            const detalleData = [detalle.iddetalle, nombreArticulo, detalle.cantidad];
+            detalleData.forEach(data => {
                 const td = document.createElement('td');
-                td.textContent = detalle[key];
+                td.textContent = data;
                 detalleRow.appendChild(td);
             });
             tbody.appendChild(detalleRow);
-        });
+        }
         detallesTable.appendChild(tbody);
 
         detallesTd.appendChild(detallesTable);
