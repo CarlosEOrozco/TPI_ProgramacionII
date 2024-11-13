@@ -3,19 +3,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const form = document.getElementById('form-orden');
     const inputFecha = document.getElementById('input-fecha');
-    const inputCantidad = document.getElementById('input-cantidad');
     const selectFormaPago = document.getElementById('component');
+    const inputCliente = document.getElementById('input-cliente');
+    const inputClienteId = document.getElementById('input-cliente-id');
+    const clienteList = document.getElementById('cliente-list');
     const selectArticulos = document.getElementById('component1');
-    const selectCliente = document.getElementById('input-cliente');
+
+    // Llenar el campo de fecha con la fecha actual
+    const today = new Date().toISOString().split('T')[0];
+    inputFecha.value = today;
 
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
         console.log('Formulario enviado');
 
         const fechaInput = new Date(inputFecha.value);
+        if (isNaN(fechaInput)) {
+            alert('Fecha no válida');
+            return;
+        }
         const fecha = fechaInput.toISOString();
         const formaPago = parseInt(selectFormaPago.value);
-        const cliente = parseInt(selectCliente.value);
+        const cliente = parseInt(inputClienteId.value);
 
         const detalles = obtenerDetallesTabla();
 
@@ -39,8 +48,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (response.ok) {
-                alert('factura agregada con exito');
+                alert('Factura agregada con éxito');
                 form.reset();
+                inputFecha.value = today; // Restablecer la fecha al día de hoy
             } else {
                 const errorText = await response.text();
                 console.error('Error al agregar la factura:', errorText);
@@ -54,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     cargarFormasPago();
     cargarArticulos();
+    configurarAutocompletadoClientes();
 
     async function cargarFormasPago() {
         try {
@@ -86,8 +97,45 @@ document.addEventListener('DOMContentLoaded', () => {
                 selectArticulos.appendChild(option);
             });
         } catch (error) {
-            console.error('Error al cargar articulo:', error);
+            console.error('Error al cargar articulos:', error);
             alert('Ocurrió un error al cargar los articulos');
+        }
+    }
+
+    async function configurarAutocompletadoClientes() {
+        try {
+            const response = await fetch(`${API_URL}/Factura/clientes`);
+            if (!response.ok) throw new Error('Error al cargar Clientes');
+
+            const clientes = await response.json();
+            inputCliente.addEventListener('input', () => {
+                const searchTerm = inputCliente.value.toLowerCase();
+                clienteList.innerHTML = '';
+
+                clientes
+                    .filter(cliente => `${cliente.nombre} ${cliente.apellido}`.toLowerCase().includes(searchTerm))
+                    .forEach(cliente => {
+                        const item = document.createElement('a');
+                        item.href = '#';
+                        item.classList.add('list-group-item', 'list-group-item-action');
+                        item.textContent = `${cliente.nombre} ${cliente.apellido}`;
+                        item.addEventListener('click', () => {
+                            inputCliente.value = `${cliente.nombre} ${cliente.apellido}`;
+                            inputClienteId.value = cliente.idcliente;
+                            clienteList.innerHTML = '';
+                        });
+                        clienteList.appendChild(item);
+                    });
+            });
+
+            document.addEventListener('click', (event) => {
+                if (!inputCliente.contains(event.target) && !clienteList.contains(event.target)) {
+                    clienteList.innerHTML = '';
+                }
+            });
+        } catch (error) {
+            console.error('Error al cargar clientes:', error);
+            alert('Ocurrió un error al cargar los clientes');
         }
     }
 
