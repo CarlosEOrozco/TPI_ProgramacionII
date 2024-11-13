@@ -1,0 +1,155 @@
+body {
+    main {
+        padding-top: 3vh;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        transition: padding-left 0.3s ease;
+        background-image: linear-gradient(to bottom, #334a51, #32424a, #313a42, #2f3339, #2b2c30, #2b2c32, #2c2d34, #2d2d36, #323545, #343d54, #344665, #2f5075);
+
+        h1 {
+            color: white;
+            margin-top: 4vh;
+            font-size: 3.5rem;
+            font-family: $font-primario;
+            margin-left: 15%;
+            margin-right: 15%;
+        }
+        p {
+            color: white;
+            font-size: 1.8rem;
+            font-family: $font-primario;
+            margin-left: 15%;
+            margin-right: 20%;
+            margin-bottom: 1vh;
+        }
+        #checkLogIn {
+            display: none;
+        }
+        .labelCheck {
+            width: 10%;
+            margin-left: 40%;
+            margin-right: 15%;
+            color: white;
+            margin-top: 2.5vh;
+            i {
+                width: 100%;
+                font-size: 1.2rem;
+            }
+            p {
+                font-size: 1.2rem;
+                width: 100%;
+                margin-left: 1rem;
+            }
+        }
+
+        .login {
+            display: none;
+            flex-direction: column;
+            position: fixed;
+            background-image: linear-gradient(to bottom, #2f5075, #366c92, #3d89af, #46a7c9, #53c6e2);
+            width: 30%;
+            height: 70vh;
+            border-radius: 2rem;
+            padding: 3rem;
+            margin-top: 10vh;
+            align-self: center;
+            .closeBoton {
+                height: 1vh;
+                }
+                i {
+                    transition: transform 0.3s ease;
+                    margin: 0;
+                    padding: 0;
+                    font-size: 2.5rem;
+                    margin-top:-50px;
+                    margin-left: -5%;
+                    &:hover {
+                        font-weight: bolder;
+                        font-size: 2.6rem;
+                        cursor: pointer;
+                        color: white;
+                }
+            }
+            h2 {
+                color:white ;
+                align-self: center;
+            }
+            Label{
+                font-size: 1.3rem;
+                margin-top: 1rem;
+                margin-bottom: 0.5rem;
+                color: white;
+            }
+            button {
+                width: 30%;
+                margin: 1rem;
+
+            }
+        }
+        #checkSignIn {
+            display: none;
+        }
+        .botonColor {
+            padding-right: 1rem;
+            background-image: linear-gradient(to bottom, #2f5075, #366c92, #3d89af, #46a7c9, #53c6e2);
+            filter: brightness(0.8) contrast(1.2);
+            &:hover {
+                transform: scale(1.07);
+                filter: brightness(1);
+            }
+        }   
+        .signin {
+            display: none;
+            flex-direction: column;
+            position: fixed;
+            width: 30%;
+            height: 70vh;
+            border-radius: 2rem;
+            padding: 3rem;
+            align-self: center;
+            margin-top: 10vh;
+            background-image: linear-gradient(to bottom, #2f5075, #366c92, #3d89af, #46a7c9, #53c6e2);
+            .closeBoton {
+                height: 1vh;
+                }
+            i {
+                transition: transform 0.3s ease;
+                margin: 0;
+                padding: 0;
+                font-size: 2.5rem;
+                margin-top:-50px;
+                margin-left: -5%;
+                &:hover {
+                    font-weight: bolder;
+                    font-size: 2.6rem;
+                    cursor: pointer;
+                    color: white;
+                }
+            }
+            h2 {
+                color:white ;
+                align-self: center;
+            }
+            Label{
+                font-size: 1.3rem;
+                margin-top: 1rem;
+                margin-bottom: 0.5rem;
+                color: white;
+            }
+            button {
+                width: 30%;
+                margin: 1rem;
+                
+            }
+        
+        }
+    // Mostrar el formulario cuando el checkbox está marcado
+        #checkLogIn:checked ~ .login {
+            display: flex;
+        }
+        #checkSignIn:checked ~ .signin {
+            display: flex;
+        }
+    }
+}

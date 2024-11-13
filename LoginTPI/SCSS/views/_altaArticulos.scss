@@ -1,0 +1,14 @@
+.altaArtMain {
+    h3 {
+        color: white;
+    }
+    label {
+        color: white;
+    }
+    button {
+        background-color:#19c39d ;
+        &:hover {
+            background-color: #009ea8;
+        }
+    }
+}

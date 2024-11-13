@@ -1,0 +1,15 @@
+.detalleMain {
+    padding-left: 5%;
+    h2 {
+        color: white;
+    }
+    label {
+        color: white;
+    }
+    .btnDetalle {
+        background-color:#00779a;
+        &:hover {
+            background-color: #53c6e2;
+        }
+    }
+}

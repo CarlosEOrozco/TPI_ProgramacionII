@@ -1,0 +1,26 @@
+.altaMain {
+    h3 {
+        color: white;
+    }
+    h4 {
+        color: white;
+    }
+    label {
+        color: white;
+    }
+    .btnDetalle {
+        background-color:#00779a;
+        &:hover {
+            background-color: #53c6e2;
+        }
+    }
+    .table {
+        color: white;
+    }
+    .btnGuardar {
+        background-color:#19c39d ;
+        &:hover {
+            background-color: #009ea8;
+        }
+    }
+}

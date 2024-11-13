@@ -1,0 +1,279 @@
+@font-face {
+  font-family: "Roboto";
+  src: url(../../fonts/Roboto-Regular.ttf) format("truetype");
+}
+body {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100vh;
+  /* Estilos cuando el sidebar tiene la clase 'collapsed' */
+}
+body #sidebar {
+  background-image: linear-gradient(to bottom, #2f5075, #366c92, #3d89af, #46a7c9, #53c6e2);
+  min-width: 250px;
+  max-width: 250px;
+  color: white;
+  transition: ease 0.5s;
+}
+body #sidebar .nav-link {
+  color: white;
+  font-size: 1.1rem;
+}
+body #sidebar #toggle-btn {
+  background-color: transparent;
+  color: white;
+  border: none;
+  font-size: 1.5rem;
+}
+body #sidebar #toggle-btn:hover {
+  color: rgba(255, 255, 255, 0.7019607843);
+}
+body #sidebar #toggle-icon {
+  transition: transform 0.3s;
+}
+body #sidebar.collapsed {
+  max-width: 60px;
+  min-width: 60px;
+}
+body #sidebar.collapsed .nav-link span {
+  display: none;
+}
+body #sidebar.collapsed #toggle-icon {
+  transform: rotate(180deg);
+}
+
+body main {
+  padding-top: 3vh;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  transition: padding-left 0.3s ease;
+  background-image: linear-gradient(to bottom, #334a51, #32424a, #313a42, #2f3339, #2b2c30, #2b2c32, #2c2d34, #2d2d36, #323545, #343d54, #344665, #2f5075);
+}
+body main h1 {
+  color: white;
+  margin-top: 4vh;
+  font-size: 3.5rem;
+  font-family: "Roboto, sans-serif";
+  margin-left: 15%;
+  margin-right: 15%;
+}
+body main p {
+  color: white;
+  font-size: 1.8rem;
+  font-family: "Roboto, sans-serif";
+  margin-left: 15%;
+  margin-right: 20%;
+  margin-bottom: 1vh;
+}
+body main #checkLogIn {
+  display: none;
+}
+body main .labelCheck {
+  width: 10%;
+  margin-left: 40%;
+  margin-right: 15%;
+  color: white;
+  margin-top: 2.5vh;
+}
+body main .labelCheck i {
+  width: 100%;
+  font-size: 1.2rem;
+}
+body main .labelCheck p {
+  font-size: 1.2rem;
+  width: 100%;
+  margin-left: 1rem;
+}
+body main .login {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  background-image: linear-gradient(to bottom, #2f5075, #366c92, #3d89af, #46a7c9, #53c6e2);
+  width: 30%;
+  height: 70vh;
+  border-radius: 2rem;
+  padding: 3rem;
+  margin-top: 10vh;
+  align-self: center;
+}
+body main .login .closeBoton {
+  height: 1vh;
+}
+body main .login i {
+  transition: transform 0.3s ease;
+  margin: 0;
+  padding: 0;
+  font-size: 2.5rem;
+  margin-top: -50px;
+  margin-left: -5%;
+}
+body main .login i:hover {
+  font-weight: bolder;
+  font-size: 2.6rem;
+  cursor: pointer;
+  color: white;
+}
+body main .login h2 {
+  color: white;
+  align-self: center;
+}
+body main .login Label {
+  font-size: 1.3rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+body main .login button {
+  width: 30%;
+  margin: 1rem;
+}
+body main #checkSignIn {
+  display: none;
+}
+body main .botonColor {
+  padding-right: 1rem;
+  background-image: linear-gradient(to bottom, #2f5075, #366c92, #3d89af, #46a7c9, #53c6e2);
+  filter: brightness(0.8) contrast(1.2);
+}
+body main .botonColor:hover {
+  transform: scale(1.07);
+  filter: brightness(1);
+}
+body main .signin {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  width: 30%;
+  height: 70vh;
+  border-radius: 2rem;
+  padding: 3rem;
+  align-self: center;
+  margin-top: 10vh;
+  background-image: linear-gradient(to bottom, #2f5075, #366c92, #3d89af, #46a7c9, #53c6e2);
+}
+body main .signin .closeBoton {
+  height: 1vh;
+}
+body main .signin i {
+  transition: transform 0.3s ease;
+  margin: 0;
+  padding: 0;
+  font-size: 2.5rem;
+  margin-top: -50px;
+  margin-left: -5%;
+}
+body main .signin i:hover {
+  font-weight: bolder;
+  font-size: 2.6rem;
+  cursor: pointer;
+  color: white;
+}
+body main .signin h2 {
+  color: white;
+  align-self: center;
+}
+body main .signin Label {
+  font-size: 1.3rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+body main .signin button {
+  width: 30%;
+  margin: 1rem;
+}
+body main #checkLogIn:checked ~ .login {
+  display: flex;
+}
+body main #checkSignIn:checked ~ .signin {
+  display: flex;
+}
+
+.altaArtMain h3 {
+  color: white;
+}
+.altaArtMain label {
+  color: white;
+}
+.altaArtMain button {
+  background-color: #19c39d;
+}
+.altaArtMain button:hover {
+  background-color: #009ea8;
+}
+
+footer {
+  background-color: transparent;
+  width: 100%;
+  color: white;
+  font-family: "Roboto, sans-serif";
+  font-size: 1.2rem;
+  margin-top: auto;
+  text-align: center;
+}
+
+.altaMain h3 {
+  color: white;
+}
+.altaMain h4 {
+  color: white;
+}
+.altaMain label {
+  color: white;
+}
+.altaMain .btnDetalle {
+  background-color: #00779a;
+}
+.altaMain .btnDetalle:hover {
+  background-color: #53c6e2;
+}
+.altaMain .table {
+  color: white;
+}
+.altaMain .btnGuardar {
+  background-color: #19c39d;
+}
+.altaMain .btnGuardar:hover {
+  background-color: #009ea8;
+}
+
+.nosotrosMain h2 {
+  color: white;
+  margin-left: 15%;
+  font-size: 2.7rem;
+  font-family: "Roboto, sans-serif";
+  margin-bottom: 2rem;
+}
+.nosotrosMain ul {
+  color: white;
+  font-size: 1.3rem;
+  margin-left: 15%;
+  list-style: none;
+}
+
+.btnStyle {
+  margin-left: 10px;
+}
+
+.detalleMain {
+  padding-left: 5%;
+}
+.detalleMain h2 {
+  color: white;
+}
+.detalleMain label {
+  color: white;
+}
+.detalleMain .btnDetalle {
+  background-color: #00779a;
+}
+.detalleMain .btnDetalle:hover {
+  background-color: #53c6e2;
+}
+
+/*# sourceMappingURL=style.css.map */
+td {
+  color:white;
+}

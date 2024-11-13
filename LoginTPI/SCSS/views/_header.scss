@@ -1,0 +1,50 @@
+body {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100vh;
+
+    #sidebar {
+        background-image: linear-gradient(to bottom, #2f5075, #366c92, #3d89af, #46a7c9, #53c6e2);
+        min-width: 250px;
+        max-width: 250px;
+        color: white;
+        transition: ease 0.5s;
+    
+        .nav-link {
+            color: white;
+            font-size: 1.1rem;
+        }
+    
+        #toggle-btn {
+            background-color: transparent;
+            color: white;
+            border: none;
+            font-size: 1.5rem;
+    
+            &:hover {
+            color: #ffffffb3;
+            }
+        }
+    
+        #toggle-icon {
+            transition: transform 0.3s;
+        }
+        }
+    
+        /* Estilos cuando el sidebar tiene la clase 'collapsed' */
+        #sidebar.collapsed {
+        max-width: 60px;
+        min-width: 60px;
+    
+        .nav-link {
+            span {
+            display: none;
+            }
+        }
+    
+        #toggle-icon {
+            transform: rotate(180deg);
+        }
+    }
+}
