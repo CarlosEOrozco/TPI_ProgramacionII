@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
     <!-- CSS -->
     <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/inicioTabla.css">
 </head>
 <body>
     <div id="sidebar" class="d-flex flex-column">
@@ -42,8 +43,24 @@
         <h1>TPI de Programación II</h1>
         <p>Has iniciado sesión con éxito!</p>
         <p>A continuación podrás navegar en esta aplicación web planteada como contenido de la unidada temática n°4.</p>
+
+        <div class="table-container">
+            <h2 class="table-title">Artículos Más Vendidos</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nombre del Artículo</th>
+                        <th>Cantidad Vendida</th>
+                    </tr>
+                </thead>
+                <tbody id="articulos-mas-vendidos-body">
+                    <!-- Las filas de la tabla se llenarán dinámicamente -->
+                </tbody>
+            </table>
+        </div>
+
         <footer>
-            @copyright 2024 - Grupo 16
+            &copy; 2024 - Grupo 16
         </footer>
     </main>
 
@@ -53,6 +70,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- Enlace al archivo JavaScript personalizado para manejar la lógica del formulario -->
     <script src="../JS/script.js"></script>
+    <!-- Enlace al nuevo archivo JavaScript para la tabla de artículos más vendidos -->
+    <script src="../JS/tablaInicio.js"></script>
     <!--Expandir menu  -->
     <script>
         document.getElementById('toggle-btn').addEventListener('click', function () {
