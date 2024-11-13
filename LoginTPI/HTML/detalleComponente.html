@@ -56,17 +56,16 @@
                         <label for="nombre" class="form-label">Nombre</label>
                         <input type="text" class="form-control" id="nombre" required>
                     </div>
-                    <!-- Campo Nombre (type text) -->
+                    <!-- Campo Precio (type number) -->
                     <div class="mb-3">
-                        <label for="nombre" class="form-label">Precio</label>
+                        <label for="precio" class="form-label">Precio</label>
                         <input type="number" class="form-control" id="precio" required>
                     </div>
-                    <!-- Campo Nombre (type text) -->
+                    <!-- Campo Estado (type text) -->
                     <div class="mb-3">
-                        <label for="nombre" class="form-label">Estado</label>
+                        <label for="estado" class="form-label">Estado</label>
                         <input type="text" class="form-control" id="estado" required>
                     </div>
-        
         
                     <!-- Botón de Actualizar -->
                     <button type="submit" class="btn btn-primary btnDetalle">Actualizar</button>
@@ -79,6 +78,26 @@
             const sidebar = document.getElementById('sidebar');
             const icon = document.getElementById('toggle-icon');
             sidebar.classList.toggle('collapsed');
+        });
+
+        // Función para obtener los parámetros de la URL
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                id: params.get('id'),
+                nombre: params.get('nombre'),
+                precio: params.get('precio'),
+                estado: params.get('estado')
+            };
+        }
+
+        // Llenar los campos del formulario con los datos de la URL
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = getQueryParams();
+            document.getElementById('idarticulo').value = params.id;
+            document.getElementById('nombre').value = params.nombre;
+            document.getElementById('precio').value = params.precio;
+            document.getElementById('estado').value = params.estado;
         });
     </script>
 </body>
