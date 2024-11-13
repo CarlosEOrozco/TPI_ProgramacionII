@@ -1,7 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const API_URL = 'https://localhost:7133/api/Factura';
     const FORMAS_PAGO_URL = 'https://localhost:7133/api/Factura/formas';
+    const CLIENTES_URL = 'https://localhost:7133/api/Factura/clientes';
     let formasPagoMap = {};
+    let clientesMap = {};
 
     // Función para obtener las formas de pago
     async function fetchFormasPago() {
@@ -13,6 +15,19 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         } catch (error) {
             console.error('Error al obtener las formas de pago:', error);
+        }
+    }
+
+    // Función para obtener los clientes
+    async function fetchClientes() {
+        try {
+            const response = await fetch(CLIENTES_URL);
+            const clientes = await response.json();
+            clientes.forEach(cliente => {
+                clientesMap[cliente.idcliente] = `${cliente.nombre} ${cliente.apellido}`;
+            });
+        } catch (error) {
+            console.error('Error al obtener los clientes:', error);
         }
     }
 
@@ -61,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Columna Cliente
             const clienteTd = document.createElement('td');
-            clienteTd.textContent = factura.cliente;
+            clienteTd.textContent = clientesMap[factura.cliente] || factura.cliente;
             row.appendChild(clienteTd);
 
             // Columna Motivo de Baja
@@ -112,5 +127,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Llamar a las funciones para cargar las formas de pago y las facturas cuando la página cargue
-    fetchFormasPago().then(fetchFacturas);
+    fetchFormasPago().then(fetchClientes).then(fetchFacturas);
 });
