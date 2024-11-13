@@ -56,6 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const tbody = document.getElementById('componentes-body');
         tbody.innerHTML = ''; // Limpiar la tabla antes de agregar nuevas filas
 
+        // Ordenar las facturas por fecha, de más reciente a más antigua
+        facturas.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+
         facturas.forEach(factura => {
             const row = document.createElement('tr');
 
